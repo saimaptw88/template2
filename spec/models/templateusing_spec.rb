@@ -21,7 +21,7 @@ require "rails_helper"
 
 RSpec.describe Templateusing, type: :model do
   context "紐づくtemplateが存在する場合" do
-    let(:templateusing){ create(:templateusing) }
+    let(:templateusing) { create(:templateusing) }
 
     it "作成に成功する" do
       expect(templateusing).to be_valid
@@ -29,7 +29,7 @@ RSpec.describe Templateusing, type: :model do
   end
 
   context "紐づくtemplateが存在しない場合" do
-    let(:templateusing){ build(:templateusing, template: nil) }
+    let(:templateusing) { build(:templateusing, template: nil) }
     it "エラーする" do
       expect(templateusing).to be_invalid
     end
