@@ -19,8 +19,8 @@
 #
 FactoryBot.define do
   factory :templateusing do
-    title { "MyString" }
-    body { "MyText" }
+    title { Faker::Internet.domain_word }
+    body { Faker::Commerce.department }
 
     template
   end
