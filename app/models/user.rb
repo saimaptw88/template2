@@ -36,5 +36,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
   has_many :templates, dependent: :destroy
+  has_many :templateusings, dependent: :destroy
   # has_many :templates, foreign_key: 'user_id', dependent: :destroy
 end
