@@ -6,14 +6,16 @@ RSpec.describe "Api::V1::Templates", type: :request do
     subject { get(api_v1_template_index_path, headers: headers) }
 
     let(:headers) { @user.create_new_auth_token }
+    let(:res) { JSON.parse(response.body) }
+
     before do
       @user = create(:user)
       create_list(:template, 3)
       3.times { @user.templates.create(title: Faker::Internet.domain_word, body: Faker::Commerce.department) }
 
       @array = []
-      @tem = Template.all
-      @tem.each do |i|
+      tem = Template.all
+      tem.each do |i|
         if i[:user_id] == @user.id
           @array.push(i[:user_id])
         end
@@ -27,8 +29,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     it "ユーザーに紐づいたテンプレートが返ってくる" do
       subject
-      res = JSON.parse(response.body)
-      expect(res.map {|x| x["user_id"] }).to eq @array
+      expect(res.map {|x| x["user"]["id"] }).to eq @array
     end
   end
 
@@ -40,6 +41,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     let(:template_id) { @template.id }
     let(:headers) { @user.create_new_auth_token }
+    let(:res) { JSON.parse(response.body) }
 
     context "ユーザーに紐づいたテンプレートである場合" do
       before do
@@ -55,20 +57,12 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
       it "ログインユーザーと同じuser_idのテンプレートを取得" do
         subject
-        res = JSON.parse(response.body)
-        expect(res["user_id"]).to eq @user.id
+        expect(res["user"]["id"]).to eq @user.id
       end
 
       it "指定したidのテンプレートを取得" do
         subject
-        res = JSON.parse(response.body)
         expect(res["id"]).to eq @template.id
-      end
-
-      it "1つのテンプレートを取得" do
-        subject
-        res = JSON.parse(response.body)
-        expect(res.count).to eq 6
       end
     end
 
