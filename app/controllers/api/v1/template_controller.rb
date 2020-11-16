@@ -3,7 +3,7 @@ class Api::V1::TemplateController < Api::V1::BaseApplicationController
 
   def index
     templates = current_api_v1_user.templates.all
-    render json: templates
+    render json: templates, each_serialiser: Api::V1::TemplateSerializer
   end
 
   def new
@@ -17,7 +17,7 @@ class Api::V1::TemplateController < Api::V1::BaseApplicationController
   end
 
   def show
-    render json: @template
+    render json: @template, serializer: Api::V1::TemplateSerializer
   end
 
   def update
