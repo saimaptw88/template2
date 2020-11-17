@@ -77,40 +77,6 @@ RSpec.describe "Api::V1::Templates", type: :request do
     end
   end
 
-  # new
-  describe "get /api/v1/template/new" do
-    subject { get(new_api_v1_template_path, params: params, headers: headers) }
-
-    let(:params) { { template: attributes_for(:template) } }
-    let(:headers) { @user.create_new_auth_token }
-    let(:res) { JSON.parse(response.body) }
-
-    before do
-      @user = create(:user)
-      @template = create(:template, user_id: @user.id)
-    end
-
-    it "レスポンスが正常" do
-      subject
-      expect(response).to have_http_status(:ok)
-    end
-
-    it "要求したtitleが登録される" do
-      subject
-      expect(res["title"]).to eq params[:template][:title]
-    end
-
-    it "要求したbodyが登録される" do
-      subject
-      expect(res["body"]).to eq params[:template][:body]
-    end
-
-    it "作成したインスタンスが保存されない" do
-      subject
-      expect { subject }.to change { Template.count }.by(0)
-    end
-  end
-
   # create
   describe "POST /api/v1/template" do
     subject { post(api_v1_template_index_path, params: params, headers: headers) }
