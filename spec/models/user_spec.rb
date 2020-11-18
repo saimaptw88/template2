@@ -32,7 +32,7 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   context "正常な値が送信された場合" do
-    let(:user){ create(:user) }
+    let(:user) { create(:user) }
 
     it "ユーザーが作成される" do
       expect(user).to be_valid
@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
     before { @user = create(:user) }
 
     context "nameが入力されていない場合" do
-      let(:user){ build(:user, name: nil) }
+      let(:user) { build(:user, name: nil) }
 
       it "ユーザー作成に失敗する" do
         expect(user).to be_invalid
@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
     end
 
     context "emailが入力されていない場合" do
-      let(:user){ build(:user, email: nil) }
+      let(:user) { build(:user, email: nil) }
 
       it "ユーザー作成に失敗する" do
         expect(user).to be_invalid
@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
     end
 
     context "passwordが入力されていない場合" do
-      let(:user){ build(:user, password: nil) }
+      let(:user) { build(:user, password: nil) }
 
       it "ユーザー作成に失敗する" do
         expect(user).to be_invalid
@@ -67,7 +67,7 @@ RSpec.describe User, type: :model do
     end
 
     context "nameがすでに存在する場合" do
-      let(:user){ build(:user, name: @user.name) }
+      let(:user) { build(:user, name: @user.name) }
 
       it "ユーザー作成に失敗する" do
         expect(user).to be_invalid
@@ -75,7 +75,7 @@ RSpec.describe User, type: :model do
     end
 
     context "emailがすでに存在する場合" do
-      let(:user){ build(:user, email: @user.email) }
+      let(:user) { build(:user, email: @user.email) }
 
       it "ユーザー作成に失敗する" do
         expect(user).to be_invalid
