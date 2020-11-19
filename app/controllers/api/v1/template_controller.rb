@@ -6,11 +6,6 @@ class Api::V1::TemplateController < Api::V1::BaseApplicationController
     render json: templates, each_serialiser: Api::V1::TemplateSerializer
   end
 
-  def new
-    template = current_api_v1_user.templates.new(template_params)
-    render json: template
-  end
-
   def create
     template = current_api_v1_user.templates.create!(template_params)
     render json: template

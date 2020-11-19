@@ -16,5 +16,6 @@
 #
 class Template < ApplicationRecord
   belongs_to :user
+  has_many :temusings, dependent: :destroy
   validates :title, presence: true, uniqueness: true
 end
