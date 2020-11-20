@@ -30,11 +30,9 @@ ActiveRecord::Schema.define(version: 2020_11_19_102659) do
     t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", default: 1, null: false
     t.bigint "template_id", default: 1, null: false
     t.index ["template_id"], name: "index_temusings_on_template_id"
     t.index ["title"], name: "index_temusings_on_title", unique: true
-    t.index ["user_id"], name: "index_temusings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
