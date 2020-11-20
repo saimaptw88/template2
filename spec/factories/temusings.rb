@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  body        :string
+#  status      :integer          default("draft")
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -11,6 +12,7 @@
 #
 # Indexes
 #
+#  index_temusings_on_status       (status)
 #  index_temusings_on_template_id  (template_id)
 #  index_temusings_on_title        (title) UNIQUE
 #
