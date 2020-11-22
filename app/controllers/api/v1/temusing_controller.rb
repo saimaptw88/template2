@@ -1,9 +1,4 @@
 class Api::V1::TemusingController < ApplicationController
-  def index
-    temusings = Temusings.all.order(updated_at: :desc).sent
-    render json: temusings
-  end
-
   def update
     # DBに保存した場合、他のテーブルに保存できるか確認
     # binding.pry
