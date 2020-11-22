@@ -10,16 +10,10 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     before do
       @user = create(:user)
-      create_list(:template, 3)
-      3.times { @user.templates.create(title: Faker::Internet.domain_word, body: Faker::Commerce.department) }
+      create_list(:template, 3, user_id: @user.id)
 
       @array = []
-      tem = Template.all
-      tem.each do |i|
-        if i[:user_id] == @user.id
-          @array.push(i[:user_id])
-        end
-      end
+      3.times { @array.push(@user.id) }
     end
 
     it "レスポンスが正常" do
@@ -45,7 +39,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     context "ユーザーに紐づいたテンプレートである場合" do
       before do
-        @template = @user.templates.create!(title: Faker::Internet.domain_word, body: Faker::Commerce.department)
+        @template = @user.templates.create!(title: Faker::Internet.domain_word, body: Faker::Commerce.department, user_id: @user.id)
         create_list(:template, 3)
         create_list(:template, 3, user_id: @user.id)
       end
@@ -57,6 +51,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
       it "ログインユーザーと同じuser_idのテンプレートを取得" do
         subject
+        # binding.pry
         expect(res["user"]["id"]).to eq @user.id
       end
 
