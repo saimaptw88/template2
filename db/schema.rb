@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2020_11_20_123456) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "template_id", default: 1, null: false
     t.integer "status", default: 0
-    t.index ["status"], name: "index_temusings_on_status"
     t.index ["template_id"], name: "index_temusings_on_template_id"
     t.index ["title"], name: "index_temusings_on_title", unique: true
   end

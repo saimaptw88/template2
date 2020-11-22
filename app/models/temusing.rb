@@ -12,11 +12,16 @@
 #
 # Indexes
 #
-#  index_temusings_on_status       (status)
 #  index_temusings_on_template_id  (template_id)
 #  index_temusings_on_title        (title) UNIQUE
 #
 class Temusing < ApplicationRecord
   belongs_to :template
-  enum status: { draft: 0, sent: 1 }
+
+  enum status: {
+    draft: 0,
+    sent: 1,
+  }
+
+  validates :status, presence: true
 end
