@@ -12,7 +12,6 @@
 #
 # Indexes
 #
-#  index_temusings_on_status       (status)
 #  index_temusings_on_template_id  (template_id)
 #  index_temusings_on_title        (title) UNIQUE
 #

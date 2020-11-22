@@ -12,7 +12,6 @@
 #
 # Indexes
 #
-#  index_temusings_on_status       (status)
 #  index_temusings_on_template_id  (template_id)
 #  index_temusings_on_title        (title) UNIQUE
 #
@@ -20,6 +19,9 @@ FactoryBot.define do
   factory :temusing do
     title { Faker::Internet.domain_word }
     body { Faker::Commerce.department }
+
+    st = ["draft", "sent"]
+    status { st.sample }
 
     template
   end
