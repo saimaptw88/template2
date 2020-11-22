@@ -39,9 +39,7 @@ RSpec.describe "Api::V1::Templates", type: :request do
 
     context "ユーザーに紐づいたテンプレートである場合" do
       before do
-        @template = @user.templates.create!(title: Faker::Internet.domain_word, body: Faker::Commerce.department, user_id: @user.id)
-        create_list(:template, 3)
-        create_list(:template, 3, user_id: @user.id)
+        @template = create(:template, user_id: @user.id)
       end
 
       it "正常なレスポンスを返す" do

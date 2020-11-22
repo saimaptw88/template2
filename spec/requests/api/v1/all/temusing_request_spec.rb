@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::All::Temusings", type: :request do
+  # index
   describe "GET /api/v1/all/temusing/:id" do
     subject { get(api_v1_all_temusing_path(temusing_id), headers: headers) }
 
@@ -25,6 +26,7 @@ RSpec.describe "Api::V1::All::Temusings", type: :request do
     end
   end
 
+  # update
   describe " PATCH  /api/v1/all/temusing/:id" do
     subject { patch(api_v1_all_temusing_path(temusing_id), params: params, headers: headers) }
 
@@ -62,6 +64,7 @@ RSpec.describe "Api::V1::All::Temusings", type: :request do
     end
   end
 
+  # destroy
   describe "DELETE /api/v1/all/temusing/:id" do
     subject { delete(api_v1_all_temusing_path(temusing_id), headers: headers) }
 

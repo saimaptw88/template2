@@ -2,10 +2,11 @@ require "rails_helper"
 
 RSpec.describe "Api::V1::Temusings", type: :request do
   describe "PATCH /api/v1/temusing/:id " do
-    subject { patch(api_v1_temusing_path(template_id), params: params) }
+    subject { patch(api_v1_temusing_path(template_id), params: params, headers: headers) }
 
     let(:template_id) { @template.id }
     let(:params) { { temusing: attributes_for(:temusing) } }
+    let(:headers) { @user.create_new_auth_token }
     let(:res) { JSON.parse(response.body) }
 
     before do
